@@ -1,6 +1,6 @@
 //@ts-ignore //Para evitar que salga rojo lo del express
-import {Request, Response} from "express";
-import mongoose from "mongoose";
+import { Request, Response } from "npm:express@4.18.2";
+import mongoose from "npm:mongoose@7.6.3";
 
 import { TaskModel } from "../db/tasks.ts";
 
