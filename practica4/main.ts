@@ -8,7 +8,15 @@ import searchWorkerbyId from "./resolvers/searchWorkerbyId.ts";
 import searchBusinessbyId from "./resolvers/searchBusinessbyId.ts";
 import searchTaskbyId from "./resolvers/searchTaskbyId.ts";
 import hireWorker from "./resolvers/hireWorker.ts";
+import fireWorker from "./resolvers/fireWorker.ts";
 import getallBusiness from "./resolvers/getallBusiness.ts";
+import getallWorkers from "./resolvers/getallWorkers.ts";
+import getallTasks from "./resolvers/getallTasks.ts";
+import deleteBusinessbyId from "./resolvers/deleteBusinessbyID.ts";
+import deleteWorkerbyId from "./resolvers/deleteWorkerbyID.ts";
+import deleteTaskbyId from "./resolvers/deleteTaskbyId.ts";
+
+import { changeStatus } from "./resolvers/changeStatus.ts";
 
 import {load} from "https://deno.land/std@0.204.0/dotenv/mod.ts"
 const env = await load();
@@ -30,12 +38,21 @@ app
 .post("/task", createTask)
 
 .put("/business/:id/hire/:workerId", hireWorker)
+.put("/business/:id/fire/:workerId", fireWorker)
 
 .get("/worker/:id", searchWorkerbyId)
 .get("/business/:id", searchBusinessbyId)
 .get("/task/:id", searchTaskbyId)
 
 .get("/business", getallBusiness)
+.get("/worker", getallWorkers)
+.get("/task", getallTasks)
+
+.put("/task/:id/:status", changeStatus)
+
+.delete("/business/:id", deleteBusinessbyId)
+.delete("/worker/:id", deleteWorkerbyId)
+.delete("/task/:id", deleteTaskbyId)
 
 app.listen(3000, () => {
     console.log("Server listening on port 3000");
